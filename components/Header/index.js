@@ -15,14 +15,14 @@ function Header(info) {
 
         const dateSpan = document.createElement('span')
         dateSpan.classList.add('date')
-        dateSpan.textContent = info.date
+        dateSpan.textContent = 'SMARCH 28, 2019'
 
         const headerH1 = document.createElement('h1')
         headerH1.textContent = 'Lambda Times'
 
         const tempSpan = document.createElement('span')
         tempSpan.classList.add('temp')
-        tempSpan.textContent = info.temp
+        tempSpan.textContent = '98°'
 
     headerContainerDiv.append(headerDiv)
         headerDiv.appendChild(dateSpan)
@@ -34,3 +34,4 @@ function Header(info) {
 
 const headerContainerDiv = document.querySelector('.header-container')
 
+Header()
