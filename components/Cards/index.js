@@ -26,6 +26,7 @@ function cardCreator(article) {
         const headlineDiv = document.createElement('div')
         headlineDiv.classList.add('.headline')
         headlineDiv.textContent = article.headline
+        
 
         const authorDiv = document.createElement('div')
         authorDiv.classList.add('.author')
@@ -39,6 +40,13 @@ function cardCreator(article) {
             const authorName = document.createElement('span')
             authorName.textContent = `By ${article.authorName}`
 
+    cardsContainerDiv.appendChild(cardDiv)
+        cardDiv.appendChild(headlineDiv)
+        cardDiv.appendChild(authorDiv)
+            authorDiv.appendChild(imgContainerDiv)
+                imgContainerDiv.appendChild(authorImg)
+            authorDiv.appendChild(authorName)
+
     return cardDiv
 }
 
@@ -46,15 +54,50 @@ const cardsContainerDiv = document.querySelector('.cards-container')
 
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
     .then( response => {
-        response.data.articles.forEach((topic) => {
-            const topics = response.data.articles(topic)
+        //BOOTSTRAP
+        const articles = response.data.articles
+        articles.bootstrap.forEach( topic => {
+            let bootstrapTopics = cardCreator(topic)
+            cardsContainerDiv.appendChild(bootstrapTopics)
         })
-        response.data.artices.topics.forEach((story) => {
-            const article = response.data.articles.topics(story)
+            return response
+    })
+    .then( response => {
+        //JAVASCRIPT
+        const articles = response.data.articles
+        articles.javascript.forEach( topic => {
+            let javascriptTopics = cardCreator(topic)
+            cardsContainerDiv.appendChild(javascriptTopics)
         })
-        response.data.articles.topics.article.forEach((info) => {
-            cardsContainerDiv.append(cardCreator(info))
+            return response
+    })
+    .then( response => {
+        //JQUERY
+        const articles = response.data.articles
+        articles.jquery.forEach( topic => {
+            let jqueryTopics = cardCreator(topic)
+            cardsContainerDiv.appendChild(jqueryTopics)
         })
+            return response
+    })
+    .then( response => {
+        //NODE
+        const articles = response.data.articles
+        articles.node.forEach( topic => {
+            let nodeTopics = cardCreator(topic)
+            cardsContainerDiv.appendChild(nodeTopics)
+        })
+            return response
+    })
+    .then( response => {
+        //TECHNOLOGY
+        console.log(response)
+        const articles = response.data.articles
+        articles.technology.forEach( topic => {
+            let technologyTopics = cardCreator(topic)
+            cardsContainerDiv.appendChild(technologyTopics)
+        })
+            return response
     })
     .catch( err => {
         console.log(err)
