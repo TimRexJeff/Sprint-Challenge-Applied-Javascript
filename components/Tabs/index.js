@@ -9,7 +9,6 @@
 //    <div class="tab">topic here</div>
 
 function tabCreator(tab) {
-    console.log(tab)
     const tabDiv = document.createElement('div')
     tabDiv.classList.add('tab')
     tabDiv.textContent = tab
