@@ -21,18 +21,18 @@
 
 function cardCreator(article) {
     const cardDiv = document.createElement('div')
-    cardDiv.classList.add('.card')
+    cardDiv.classList.add('card')
 
         const headlineDiv = document.createElement('div')
-        headlineDiv.classList.add('.headline')
+        headlineDiv.classList.add('headline')
         headlineDiv.textContent = article.headline
         
 
         const authorDiv = document.createElement('div')
-        authorDiv.classList.add('.author')
+        authorDiv.classList.add('author')
 
             const imgContainerDiv = document.createElement('div')
-            imgContainerDiv.classList.add('.img-container')
+            imgContainerDiv.classList.add('img-container')
 
                 const authorImg = document.createElement('img')
                 authorImg.src = article.authorPhoto
@@ -40,7 +40,7 @@ function cardCreator(article) {
             const authorName = document.createElement('span')
             authorName.textContent = `By ${article.authorName}`
 
-    cardsContainerDiv.appendChild(cardDiv)
+    cardsContainerDiv.append(cardDiv)
         cardDiv.appendChild(headlineDiv)
         cardDiv.appendChild(authorDiv)
             authorDiv.appendChild(imgContainerDiv)
@@ -58,7 +58,7 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
         const articles = response.data.articles
         articles.bootstrap.forEach( topic => {
             let bootstrapTopics = cardCreator(topic)
-            cardsContainerDiv.appendChild(bootstrapTopics)
+            cardsContainerDiv.append(bootstrapTopics)
         })
             return response
     })
@@ -67,7 +67,7 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
         const articles = response.data.articles
         articles.javascript.forEach( topic => {
             let javascriptTopics = cardCreator(topic)
-            cardsContainerDiv.appendChild(javascriptTopics)
+            cardsContainerDiv.append(javascriptTopics)
         })
             return response
     })
@@ -76,7 +76,7 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
         const articles = response.data.articles
         articles.jquery.forEach( topic => {
             let jqueryTopics = cardCreator(topic)
-            cardsContainerDiv.appendChild(jqueryTopics)
+            cardsContainerDiv.append(jqueryTopics)
         })
             return response
     })
@@ -85,17 +85,16 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
         const articles = response.data.articles
         articles.node.forEach( topic => {
             let nodeTopics = cardCreator(topic)
-            cardsContainerDiv.appendChild(nodeTopics)
+            cardsContainerDiv.append(nodeTopics)
         })
             return response
     })
     .then( response => {
         //TECHNOLOGY
-        console.log(response)
         const articles = response.data.articles
         articles.technology.forEach( topic => {
             let technologyTopics = cardCreator(topic)
-            cardsContainerDiv.appendChild(technologyTopics)
+            cardsContainerDiv.append(technologyTopics)
         })
             return response
     })
