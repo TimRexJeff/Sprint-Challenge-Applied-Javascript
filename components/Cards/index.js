@@ -17,3 +17,87 @@
 // </div>
 //
 // Create a card for each of the articles and add the card to the DOM.
+
+
+function cardCreator(article) {
+    const cardDiv = document.createElement('div')
+    cardDiv.classList.add('card')
+
+        const headlineDiv = document.createElement('div')
+        headlineDiv.classList.add('headline')
+        headlineDiv.textContent = article.headline
+        
+
+        const authorDiv = document.createElement('div')
+        authorDiv.classList.add('author')
+
+            const imgContainerDiv = document.createElement('div')
+            imgContainerDiv.classList.add('img-container')
+
+                const authorImg = document.createElement('img')
+                authorImg.src = article.authorPhoto
+
+            const authorName = document.createElement('span')
+            authorName.textContent = `By ${article.authorName}`
+
+    cardsContainerDiv.append(cardDiv)
+        cardDiv.appendChild(headlineDiv)
+        cardDiv.appendChild(authorDiv)
+            authorDiv.appendChild(imgContainerDiv)
+                imgContainerDiv.appendChild(authorImg)
+            authorDiv.appendChild(authorName)
+
+    return cardDiv
+}
+
+const cardsContainerDiv = document.querySelector('.cards-container')
+
+axios.get('https://lambda-times-backend.herokuapp.com/articles')
+    .then( response => {
+        //BOOTSTRAP
+        const articles = response.data.articles
+        articles.bootstrap.forEach( topic => {
+            let bootstrapTopics = cardCreator(topic)
+            cardsContainerDiv.append(bootstrapTopics)
+        })
+            return response
+    })
+    .then( response => {
+        //JAVASCRIPT
+        const articles = response.data.articles
+        articles.javascript.forEach( topic => {
+            let javascriptTopics = cardCreator(topic)
+            cardsContainerDiv.append(javascriptTopics)
+        })
+            return response
+    })
+    .then( response => {
+        //JQUERY
+        const articles = response.data.articles
+        articles.jquery.forEach( topic => {
+            let jqueryTopics = cardCreator(topic)
+            cardsContainerDiv.append(jqueryTopics)
+        })
+            return response
+    })
+    .then( response => {
+        //NODE
+        const articles = response.data.articles
+        articles.node.forEach( topic => {
+            let nodeTopics = cardCreator(topic)
+            cardsContainerDiv.append(nodeTopics)
+        })
+            return response
+    })
+    .then( response => {
+        //TECHNOLOGY
+        const articles = response.data.articles
+        articles.technology.forEach( topic => {
+            let technologyTopics = cardCreator(topic)
+            cardsContainerDiv.append(technologyTopics)
+        })
+            return response
+    })
+    .catch( err => {
+        console.log(err)
+    })
